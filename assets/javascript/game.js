@@ -1,8 +1,6 @@
-//for word guess game
-
+/*---------------------------------- data ---------------------------------------------*/
 //word database, each associate a img and sound
-var words = ["apple", "banana", "peach", "cat", "mouse", "horse"];
-var imgDict = {
+var dataBase = {
     "apple": "assets/images/apple.jpg",
     "banana": "assets/images/banana.jpg",
     "peach": "assets/images/peach.png",
@@ -11,15 +9,19 @@ var imgDict = {
     "horse": "assets/images/horse.jpg"
 };
 
+/*---------------------------------- setting ---------------------------------------------*/
 var maxAttempt = 11;            // defined maximum allowed guesses
 
+/*---------------------------------- variables -------------------------------------------*/
 var winRecord = 0;              //
 var firstTime = true;           // game initial status when open the page
 var remianAttempt = maxAttempt;
-var index;                      // store the correct word index 
+var index=-1;                   // store the correct word index 
+var key;                        // store the word 
+
 var currentWord = [];           // remianing char 
 var displayWord = [];           // "hidden" word that display on the currentWordSpan
-var inputRecord = [];          // guessed word history
+var inputRecord = [];           // guessed word history
 
 // connect variables to html corresponding span elements
 var winRecordSpan = document.getElementById("winRecordSpan");
@@ -28,7 +30,7 @@ var remianAttemptSpan = document.getElementById("remainAttemptSpan");
 var inputRecordSpan = document.getElementById("inputRecordSpan");
 var displayImage = document.getElementById("displayImage");
 
-/////////////////////////// game logic////////////////////////////////////////
+/*---------------------------------- logic -------------------------------------------*/
 
 //every key press trigger the event
 document.onkeypress = function (event) {
@@ -47,9 +49,19 @@ function newGame() {
     console.log("newGame!")
     gameOver = false;
     remianAttempt = maxAttempt;
-    index = Math.floor(Math.random() * words.length);
-    currentWord = words[index].split("");
-    displayWord = words[index].split("");
+
+    //not to generate the previous word
+    do{
+        var temp = Math.floor(Math.random() * (Object.keys(dataBase).length));
+    }while(temp==index);
+    index = temp;
+    console.log("index:"+index);
+    
+    key = Object.keys(dataBase)[index];
+    console.log("key:"+key);
+
+    currentWord = key.split("");
+    displayWord = key.split("");
     displayWord.fill("_");
     inputRecord = [];
     console.log("current:" + currentWord);
@@ -66,13 +78,13 @@ function check(input) {
     if ((i != -1)) {
         //hit!
         currentWord[i]="";        //replace the char by ""
-        inputRecord.push(input);     //add it to the record
+        inputRecord.push(input);  //add it to the record
         displayWord[i] = input;   //reveal its position
 
         console.log("displayword:" + displayWord.join(""));
-        if (displayWord.join("") == words[index]) {
+        if (displayWord.join("") == key) {
             //bingo!
-            displayImage.src=imgDict[words[index]];
+            displayImage.src=dataBase[key];
             winRecord++;
             newGame();
         }

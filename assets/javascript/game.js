@@ -73,19 +73,21 @@ function check(input) {
     console.log("currentword:" + currentWord.toString(""));
     console.log("displayword:" + displayWord.toString(""));
 
-    var i = currentWord.indexOf(input);
+    var i = currentWord.indexOf(input); //check coresponding char index
     console.log("i:" + i);
     if ((i != -1)) {
         //hit!
         currentWord[i]="";        //replace the char by ""
         inputRecord.push(input);  //add it to the record
         displayWord[i] = input;   //reveal its position
+        remianAttempt--;
 
         console.log("displayword:" + displayWord.join(""));
         if (displayWord.join("") == key) {
             //bingo!
             displayImage.src=dataBase[key];
             winRecord++;
+            new Audio("assets/sounds/correct.wav").play(); //play correct sound effect
             newGame();
         }
     } else {
@@ -93,6 +95,8 @@ function check(input) {
         if (inputRecord.indexOf(input) == -1) {
             inputRecord.push(input);
             if ((--remianAttempt) == 0) {
+                //fail!
+                new Audio("assets/sounds/wrong.mp3").play();
                 newGame();
             }
         }

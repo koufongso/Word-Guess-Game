@@ -1,1 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <!--CSS file-->
+    <link rel="stylesheet" type="text/css" href="assets/css/reset.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+
+</head>
+
+<body>
+    <header></header>
+
+    <div clss="main_panel">
+        <h1 class="title">Title</h1>
+        <div class="content">
+            <!--left zone/ info panel-->
+            <div clss="info">
+                <!--some pic corresponds to the current word here-->
+            </div>
+
+            <!--rigth zone/ control panel-->
+            <div class="control">
+                <!--Game Instruction-->
+                <div class="instruction">Press any key to get started!</div>
+
+                <!--# of game won-->
+                <div class="winRecord">
+                    Wins
+                    <span id="winRecordSpan">_</span>
+                </div>
+
+                <!--current guessing word-->
+                <div class="currentWord">
+                    Current Word
+                    <span id="currentWordSpan"></span>
+                </div>
+
+                <!--# of guess remain-->
+                <div class="remainAttempt">
+                    Number of Guesses remaining
+                    <span id="remainAttemptSpan"></span>
+                </div>
+
+                <!--input record-->
+                <div class="inputRecord">
+                    Letter already guessed
+                    <span id="inputRecordSpan"></span>
+                </div>
+            </div>
+
+
+        </div>
+
+
+
+
+    </div>
+
+    <script src="assets/javascript/game.js"></script>
+</body>
+
+</html>

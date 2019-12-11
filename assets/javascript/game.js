@@ -1,17 +1,18 @@
 //for word guess game
 
 //word database, each associate a img and sound
-var words = ["apple", "banana", "peach", "cat", "mouse", "horse", "car", "plane", "ship"];
+var words = ["apple", "banana", "peach", "cat", "mouse", "horse"];
+var imgs=[]
 
 var maxAttempt = 11;            // defined maximum allowed guesses
 
 var winRecord = 0;              //
-var gameOver = true;            // game initial status when open the page
+var firstTime = true;            // game initial status when open the page
 var remianAttempt = maxAttempt;
 var index;                      // current word index
 var currentWord = "";           // current word
 var displayWord = [];           // "hidden" word that display on the currentWordSpan
-var inputRecord = "";           // guessed word history
+var inputRecord = " ";           // guessed word history
 
 // connect variables to html corresponding span elements
 var winRecordSpan = document.getElementById("winRecordSpan");
@@ -23,11 +24,14 @@ var inputRecordSpan = document.getElementById("inputRecordSpan");
 
 //every key press trigger the event
 document.onkeypress = function (event) {
-    if (gameOver) {
+    if (firstTime) {
+        firstTime=false;
         newGame();
     } else {
         check(event.key.toLowerCase());
     }
+
+
     updateScreen() //update the html file
 };
 
@@ -50,19 +54,20 @@ function check(input) {
     var i = currentWord.search(input);
     if ((i != -1)) {
         //bingo!
-        currentWord=currentWord.replace(input," ") //replace the char with " "
+        currentWord=currentWord.replace(input,"\n") //replace the char with " "
         inputRecord+=input;
         displayWord[i]=input;
+
         if(!displayWord.includes("_")){
-            gameOver=true;
             winRecord++;
+            newGame();
         }
     }else{
         //wrong!
         if(inputRecord.search(input)==-1){
             inputRecord+=input;
             if((--remianAttempt)==0){
-                gameOver=true;
+                newGame();
             }
         }
     }

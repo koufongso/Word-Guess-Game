@@ -1,1 +1,50 @@
+body{
+    background-color:black;
+    color: blue;
+    font-family: ;
+}
+
+header, .main_content{
+    width:960px;
+    margin:auto;
+    text-align: center;
+}
+
+header img{
+    width:100%;
+}
+
+ .info, .control{
+    width:40%;
+    height:500px;
+    border: 4px dashed blue;
+    padding:2%;
+    margin:1%;
+    text-align: center;
+    display: inline-block;  
+    font-size: 180%;
+    vertical-align:top;
+}
+
+
+.info img{
+    
+}
+
+.control div{
+    border: 1px dashed blue;
+    padding:2%;
+    margin:2%;   
+}
+
+.control div span{
+    color:yellow;
+}
+
+
+#currentWordSpan{
+    width:100%;
+    letter-spacing: 1em;
+    text-align: center;
+}
 

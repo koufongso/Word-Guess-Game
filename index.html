@@ -13,14 +13,16 @@
 </head>
 
 <body>
-    <header></header>
+    <div class="wapper">
+        <header>
+            <img src="assets/images/2-WordGuess.jpg">
+        </header>
 
-    <div clss="main_panel">
-        <h1 class="title">Title</h1>
-        <div class="content">
+        <div class="main_content">
             <!--left zone/ info panel-->
-            <div clss="info">
+            <div class="info">
                 <!--some pic corresponds to the current word here-->
+                <span id="image"></span>
             </div>
 
             <!--rigth zone/ control panel-->
@@ -31,34 +33,29 @@
                 <!--# of game won-->
                 <div class="winRecord">
                     Wins
-                    <span id="winRecordSpan">_</span>
+                    <br>
+                    <span id="winRecordSpan">0</span>
                 </div>
 
                 <!--current guessing word-->
                 <div class="currentWord">
-                    Current Word
-                    <span id="currentWordSpan"></span>
+                    Current Word<br>
+                    <span id="currentWordSpan">&nbsp;</span>
                 </div>
 
                 <!--# of guess remain-->
                 <div class="remainAttempt">
-                    Number of Guesses remaining
-                    <span id="remainAttemptSpan"></span>
+                    Number of Guesses remaining<br>
+                    <span id="remainAttemptSpan">&nbsp;</span>
                 </div>
 
                 <!--input record-->
                 <div class="inputRecord">
-                    Letter already guessed
-                    <span id="inputRecordSpan"></span>
+                    Letter already guessed<br>
+                    <span id="inputRecordSpan">&nbsp;</span>
                 </div>
             </div>
-
-
         </div>
-
-
-
-
     </div>
 
     <script src="assets/javascript/game.js"></script>

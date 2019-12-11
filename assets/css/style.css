@@ -1,7 +1,7 @@
 body{
     background-color:black;
     color: blue;
-    font-family: ;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
 header, .main_content{
@@ -11,40 +11,47 @@ header, .main_content{
 }
 
 header img{
-    width:100%;
+    width:60%;
 }
 
  .info, .control{
     width:40%;
-    height:500px;
+    height:450px;
     border: 4px dashed blue;
     padding:2%;
     margin:1%;
     text-align: center;
     display: inline-block;  
-    font-size: 180%;
+    font-size: 24px;
     vertical-align:top;
 }
 
 
 .info img{
-    
+    width:100%;
 }
 
 .control div{
+    height: 55px;
     border: 1px dashed blue;
     padding:2%;
     margin:2%;   
 }
 
+.control .instruction{
+    border:none;
+    height: fit-content;
+}
+
 .control div span{
     color:yellow;
+    margin-top:2px;
 }
 
 
 #currentWordSpan{
     width:100%;
-    letter-spacing: 1em;
+    letter-spacing: 20px;
     text-align: center;
 }
 

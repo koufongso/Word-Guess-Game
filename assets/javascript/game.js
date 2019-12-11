@@ -1,6 +1,7 @@
+//define wordGame Object
 var wordGame = {
     /*---------------------------------- data ---------------------------------------------*/
-    //word database, each associate a img and sound
+    //word database, each associate a img 
     dataBase: {
         apple: "assets/images/apple.jpg",
         banana: "assets/images/banana.jpg",
@@ -9,37 +10,31 @@ var wordGame = {
         mouse: "assets/images/mouse.jpg",
         horse: "assets/images/horse.jpg"
     },
-
-    /*---------------------------------- const variables ---------------------------------------------*/
+    /*---------------------------------- Const variables ---------------------------------------------*/
     maxAttempt: 11,                 // defined maximum allowed guesses
-
-    /*---------------------------------- variables -------------------------------------------*/
+    /*---------------------------------- Variables -------------------------------------------*/
     winRecord: 0,                   // initial winRecord
     firstTime: true,                // game initial status when open the page
     remianAttempt: this.maxAttempt,
     index: -1,                      // store the correct word index 
     key: -2,                        // store the word 
-
     currentWord: [],                // remianing char 
     displayWord: [],                // "hidden" word that display on the currentWordSpan
     inputRecord: [],                // guessed word history
-
     // connect variables to html corresponding span elements
     winRecordSpan: document.getElementById("winRecordSpan"),
     currentWordSpan: document.getElementById("currentWordSpan"),
     remianAttemptSpan: document.getElementById("remainAttemptSpan"),
     inputRecordSpan: document.getElementById("inputRecordSpan"),
     displayImage: document.getElementById("displayImage"),
-
-    /*---------------------------------- methods -------------------------------------------*/
+    /*---------------------------------- Methods -------------------------------------------*/
     isFirstTime() {
         return this.firstTime;
     },
-
     // start a new game, initialize all variables
     newGame() {
         this.firstTime = false;
-        console.log("newGame!")
+        //console.log("newGame!")
         this.remianAttempt = this.maxAttempt;
 
         //not to generate the previous word
@@ -53,10 +48,10 @@ var wordGame = {
         this.displayWord.fill("_");
         this.inputRecord = [];
 
-        console.log("index:" + this.index);
-        console.log("key:" + this.key);
-        console.log("current:" + this.currentWord);
-        console.log("display:" + this.displayWord);
+        // console.log("index:" + this.index);
+        // console.log("key:" + this.key);
+        // console.log("current:" + this.currentWord);
+        // console.log("display:" + this.displayWord);
     },
 
     check(input) {
@@ -69,7 +64,7 @@ var wordGame = {
             this.displayWord[i] = input;   //reveal its position
             this.remianAttempt--;
 
-            console.log("displayword:" + this.displayWord.join(""));
+            //console.log("displayword:" + this.displayWord.join(""));
             if (this.displayWord.join("") == this.key) {
                 //bingo!
                 this.displayImage.src = this.dataBase[this.key];
@@ -83,17 +78,17 @@ var wordGame = {
                 this.inputRecord.push(input);
                 if ((--this.remianAttempt) == 0) {
                     //fail!
-                    new Audio("assets/sounds/wrong.mp3").play();
+                    new Audio("assets/sounds/wrong.mp3").play(); //play wrong sound effect
                     this.newGame();
                 }
             }
         }
 
-        console.log("check! input:" + input);
-        console.log("i:" + i);
-        console.log("currentword:" + this.currentWord.toString(""));
-        console.log("displayword:" + this.displayWord.toString(""));
-        console.log("inputRecord:" + this.inputRecord);
+        // console.log("check! input:" + input);
+        // console.log("i:" + i);
+        // console.log("currentword:" + this.currentWord.toString(""));
+        // console.log("displayword:" + this.displayWord.toString(""));
+        // console.log("inputRecord:" + this.inputRecord);
     },
 
     updateScreen() {
@@ -102,15 +97,17 @@ var wordGame = {
         this.remianAttemptSpan.innerHTML = this.remianAttempt;
         this.inputRecordSpan.innerHTML = this.inputRecord.toString();
     }
-}
+};
 
 
+/*------------------------------------------------------------------*/
+/*--------------------------Game logic------------------------------*/
 //every key press trigger the event
 document.onkeypress = function (event) {
     if (wordGame.isFirstTime()) {
-        wordGame.newGame();
+        wordGame.newGame(); //if its the first time to start the game, create new game
     } else {
-        wordGame.check(event.key.toLowerCase());
+        wordGame.check(event.key.toLowerCase()); //check current input
     }
     wordGame.updateScreen() //update the html file
 };
